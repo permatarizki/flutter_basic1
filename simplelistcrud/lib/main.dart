@@ -4,7 +4,14 @@ main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _textOnScreen = 'This is initial text';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,9 +22,13 @@ class MyApp extends StatelessWidget {
           children: [
             RaisedButton(
                 child: Text('Button'),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _textOnScreen = 'I changed the text';
+                  });
+                },
                 color: Color.fromARGB(255, 66, 165, 245)),
-            Text('HELLO WORLD'),
+            Text(_textOnScreen),
           ],
           mainAxisAlignment: MainAxisAlignment.center,
         ),
