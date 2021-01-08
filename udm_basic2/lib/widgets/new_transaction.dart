@@ -53,7 +53,7 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Container(
@@ -88,7 +88,7 @@ class _NewTransactionState extends State<NewTransaction> {
                     ),
                   ),
                   FlatButton(
-                    textColor: Theme.of(ctx).primaryColor,
+                    textColor: Theme.of(context).primaryColor,
                     child: Text(
                       'Choose Date',
                       style: TextStyle(
@@ -102,8 +102,8 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             RaisedButton(
               child: Text('Add Transaction'),
-              color: Theme.of(ctx).primaryColor,
-              textColor: Theme.of(ctx).textTheme.button.color,
+              color: Theme.of(context).primaryColor,
+              textColor: Theme.of(context).textTheme.button.color,
               onPressed: _submitData,
             ),
           ],
