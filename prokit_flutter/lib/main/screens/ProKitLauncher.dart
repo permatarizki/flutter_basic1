@@ -27,7 +27,8 @@ class ProKitLauncher extends StatefulWidget {
   ProKitLauncherState createState() => ProKitLauncherState();
 }
 
-class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderStateMixin, AfterLayoutMixin<ProKitLauncher> {
+class ProKitLauncherState extends State<ProKitLauncher>
+    with TickerProviderStateMixin, AfterLayoutMixin<ProKitLauncher> {
   var selectedTab = 0;
 
   PageController _controller = PageController(initialPage: 0, keepPage: false);
@@ -50,7 +51,8 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
 
     var width = MediaQuery.of(context).size.width;
 
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
     Widget tabItem(String name, int pos, {var isRight = false}) {
       return GestureDetector(
@@ -61,17 +63,27 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
           });
         },
         child: Container(
-          child: Text(name, style: boldTextStyle(color: selectedTab == pos ? appColorPrimaryDark : appStore.textPrimaryColor, size: 18)),
+          child: Text(name,
+              style: boldTextStyle(
+                  color: selectedTab == pos
+                      ? appColorPrimaryDark
+                      : appStore.textPrimaryColor,
+                  size: 18)),
           alignment: Alignment.center,
           height: 50,
           decoration: selectedTab == pos
-              ? BoxDecoration(color: appStore.appColorPrimaryLightColor, borderRadius: isRight ? BorderRadius.only(topLeft: Radius.circular(16)) : BorderRadius.only(topRight: Radius.circular(16)))
+              ? BoxDecoration(
+                  color: appStore.appColorPrimaryLightColor,
+                  borderRadius: isRight
+                      ? BorderRadius.only(topLeft: Radius.circular(16))
+                      : BorderRadius.only(topRight: Radius.circular(16)))
               : BoxDecoration(),
         ),
       );
     }
 
-    Widget category(Color color, String img, String name, {bool isNew = false, String type = 'New', @required Function onTap}) {
+    Widget category(Color color, String img, String name,
+        {bool isNew = false, String type = 'New', @required Function onTap}) {
       return Container(
         width: 145,
         height: 110,
@@ -82,12 +94,17 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
               width: 140,
               height: 100,
               margin: EdgeInsets.only(right: 16),
-              decoration: boxDecorationRoundedWithShadow(4, backgroundColor: color),
+              decoration:
+                  boxDecorationRoundedWithShadow(4, backgroundColor: color),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SvgPicture.asset(img, width: 40, height: 40, color: Colors.white),
-                  Text('$name', style: boldTextStyle(color: Colors.white), maxLines: 2, textAlign: TextAlign.center),
+                  SvgPicture.asset(img,
+                      width: 40, height: 40, color: Colors.white),
+                  Text('$name',
+                      style: boldTextStyle(color: Colors.white),
+                      maxLines: 2,
+                      textAlign: TextAlign.center),
                 ],
               ),
             ),
@@ -99,7 +116,9 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                 margin: EdgeInsets.only(right: 8, top: 8),
                 padding: EdgeInsets.fromLTRB(8, 2, 8, 2),
                 decoration: boxDecoration(bgColor: appDarkRed, radius: 4),
-                child: FittedBox(child: text(type.validate(), fontSize: 8.0, textColor: Colors.white)),
+                child: FittedBox(
+                    child: text(type.validate(),
+                        fontSize: 8.0, textColor: Colors.white)),
               ).visible(isNew.validate()),
             ),
           ],
@@ -116,7 +135,8 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return NestedScrollView(
-                  headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                  headerSliverBuilder:
+                      (BuildContext context, bool innerBoxIsScrolled) {
                     return [
                       SliverAppBar(
                         expandedHeight: 230.0,
@@ -127,13 +147,17 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                         automaticallyImplyLeading: false,
                         actions: [
                           IconButton(
-                            icon: Icon(Icons.settings, color: appStore.backgroundColor),
+                            icon: Icon(Icons.settings,
+                                color: appStore.backgroundColor),
                             onPressed: () {
                               SettingScreen().launch(context);
                             },
                           )
                         ],
-                        title: innerBoxIsScrolled ? Text(appLblDashboardHeading, style: boldTextStyle(size: 24)) : null,
+                        title: innerBoxIsScrolled
+                            ? Text(appLblDashboardHeading,
+                                style: boldTextStyle(size: 10))
+                            : null,
                         bottom: innerBoxIsScrolled
                             ? PreferredSize(
                                 preferredSize: Size(context.width(), 80),
@@ -149,8 +173,10 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                                         height: 60,
                                         margin: EdgeInsets.only(right: 12),
                                         padding: EdgeInsets.all(16),
-                                        child: Image.asset(icons[0], color: Colors.white),
-                                        decoration: boxDecoration(bgColor: colors[0], radius: 4),
+                                        child: Image.asset(icons[0],
+                                            color: Colors.white),
+                                        decoration: boxDecoration(
+                                            bgColor: colors[0], radius: 4),
                                       ),
                                       Expanded(
                                         child: Stack(
@@ -159,27 +185,46 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                                             Container(
                                               width: width,
                                               height: 60,
-                                              padding: EdgeInsets.only(left: 16, right: 16),
-                                              margin: EdgeInsets.only(right: width / 28),
+                                              padding: EdgeInsets.only(
+                                                  left: 16, right: 16),
+                                              margin: EdgeInsets.only(
+                                                  right: width / 28),
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: <Widget>[
                                                   Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: <Widget>[
-                                                      Text('Default Theme', style: boldTextStyle(), maxLines: 2),
+                                                      Text('Default Theme',
+                                                          style:
+                                                              boldTextStyle(),
+                                                          maxLines: 2),
                                                     ],
                                                   ).expand(),
                                                 ],
                                               ),
-                                              decoration: boxDecoration(bgColor: appStore.scaffoldBackground, radius: 4, showShadow: true),
+                                              decoration: boxDecoration(
+                                                  bgColor: appStore
+                                                      .scaffoldBackground,
+                                                  radius: 4,
+                                                  showShadow: true),
                                             ),
                                             Container(
                                               width: 30,
                                               height: 30,
-                                              child: Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                                              decoration: BoxDecoration(color: colors[0], shape: BoxShape.circle),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_right,
+                                                  color: Colors.white),
+                                              decoration: BoxDecoration(
+                                                  color: colors[0],
+                                                  shape: BoxShape.circle),
                                             )
                                           ],
                                         ),
@@ -198,28 +243,53 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(appLblDashboardHeading, style: boldTextStyle(size: 35)).paddingOnly(top: 16, left: 16, right: 16),
+                                Text(appLblDashboardHeading,
+                                        style: boldTextStyle(size: 35))
+                                    .paddingOnly(top: 16, left: 16, right: 16),
                                 SizedBox(height: 16),
                                 SingleChildScrollView(
                                   padding: EdgeInsets.all(8),
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      category(appCat5, app_ic_phone, snapshot.data.defaultTheme.name, type: snapshot.data.defaultTheme.type, onTap: () {
+                                      category(appCat5, app_ic_phone,
+                                          snapshot.data.defaultTheme.name,
+                                          type: snapshot.data.defaultTheme.type,
+                                          onTap: () {
                                         DTWalkThoughScreen().launch(context);
                                       }),
-                                      category(appCat4, app_ic_phone, snapshot.data.widgets.name, type: snapshot.data.widgets.type, onTap: () {
-                                        ProKitScreenListing(snapshot.data.widgets).launch(context);
+                                      category(appCat4, app_ic_phone,
+                                          snapshot.data.widgets.name,
+                                          type: snapshot.data.widgets.type,
+                                          onTap: () {
+                                        ProKitScreenListing(
+                                                snapshot.data.widgets)
+                                            .launch(context);
                                       }),
-                                      category(appCat1, app_ic_phone, appLblFullApps, isNew: true, type: snapshot.data.fullApp.type, onTap: () {
-                                        ProKitScreenListing(snapshot.data.fullApp).launch(context);
+                                      category(
+                                          appCat1, app_ic_phone, appLblFullApps,
+                                          isNew: true,
+                                          type: snapshot.data.fullApp.type,
+                                          onTap: () {
+                                        ProKitScreenListing(
+                                                snapshot.data.fullApp)
+                                            .launch(context);
                                       }),
-                                      category(appCat2, app_dashboard, appLblDashboard, type: snapshot.data.dashboard.type, onTap: () {
-                                        ProKitScreenListing(snapshot.data.dashboard).launch(context);
+                                      category(appCat2, app_dashboard,
+                                          appLblDashboard,
+                                          type: snapshot.data.dashboard.type,
+                                          onTap: () {
+                                        ProKitScreenListing(
+                                                snapshot.data.dashboard)
+                                            .launch(context);
                                       }),
-                                      category(appCat3, app_ic_phone, appLblIntegrations, onTap: () {
-                                        ProKitScreenListing(snapshot.data.integrations).launch(context);
+                                      category(appCat3, app_ic_phone,
+                                          appLblIntegrations, onTap: () {
+                                        ProKitScreenListing(
+                                                snapshot.data.integrations)
+                                            .launch(context);
                                       }, isNew: true),
                                     ],
                                   ),
@@ -239,7 +309,8 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                         Row(
                           children: <Widget>[
                             tabItem(appLblThemeList, 0).expand(),
-                            tabItem(appLblScreenList, 1, isRight: true).expand(),
+                            tabItem(appLblScreenList, 1, isRight: true)
+                                .expand(),
                           ],
                         ),
                         16.height,
@@ -267,7 +338,8 @@ class ProKitLauncherState extends State<ProKitLauncher> with TickerProviderState
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Text("${snapshot.error.toString()}", style: primaryTextStyle());
+                return Text("${snapshot.error.toString()}",
+                    style: primaryTextStyle());
               }
               return CircularProgressIndicator().center();
             },
@@ -303,13 +375,19 @@ class CustomDialog extends StatelessWidget {
                 },
                 child: Align(
                   alignment: Alignment.topRight,
-                  child: Padding(padding: EdgeInsets.only(top: 8, right: 16), child: Icon(Icons.close, color: appStore.iconColor)),
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 8, right: 16),
+                      child: Icon(Icons.close, color: appStore.iconColor)),
                 ),
               ),
               Image.asset('images/app/app_icon.png', height: 100),
-              Text("Download the source code", style: boldTextStyle(size: 20)).fit(),
+              Text("Download the source code", style: boldTextStyle(size: 20))
+                  .fit(),
               SizedBox(height: 6),
-              Text("Love ProKit Flutter? Tap on download to buy ProKit Flutter.", style: secondaryTextStyle(size: 16), textAlign: TextAlign.center),
+              Text(
+                  "Love ProKit Flutter? Tap on download to buy ProKit Flutter.",
+                  style: secondaryTextStyle(size: 16),
+                  textAlign: TextAlign.center),
               SizedBox(height: 24),
               RaisedButton(
                 onPressed: () {

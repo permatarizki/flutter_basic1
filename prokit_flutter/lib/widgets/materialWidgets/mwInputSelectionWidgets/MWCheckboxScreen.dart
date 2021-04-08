@@ -52,7 +52,8 @@ class MWCheckboxScreenState extends State<MWCheckboxScreen> {
               Container(
                 margin: EdgeInsets.only(bottom: 10),
                 alignment: Alignment.topLeft,
-                child: Text('Simple Checkbox', style: boldTextStyle(size: 18)),
+                child:
+                    Text('Simple 123 Checkbox', style: boldTextStyle(size: 18)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -134,7 +135,8 @@ class MWCheckboxScreenState extends State<MWCheckboxScreen> {
               Container(
                 margin: EdgeInsets.only(top: 20, bottom: 20),
                 alignment: Alignment.topLeft,
-                child: Text('Custom Shape Checkbox', style: boldTextStyle(size: 18)),
+                child: Text('Custom Shape Checkbox',
+                    style: boldTextStyle(size: 18)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -145,7 +147,9 @@ class MWCheckboxScreenState extends State<MWCheckboxScreen> {
                     width: 25,
                     height: 25,
                     decoration: new BoxDecoration(
-                      color: isChecked6 == true ? appColorPrimary : Colors.transparent,
+                      color: isChecked6 == true
+                          ? appColorPrimary
+                          : Colors.transparent,
                       border: Border.all(
                         width: 1,
                         color: appStore.textPrimaryColor,
